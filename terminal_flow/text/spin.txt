@@ -1,0 +1,16 @@
+terminal-flow
+=============
+
+A colorful terminal animation tool!
+
+   ╔══════════════════╗
+   ║  RAINBOW COLORS  ║
+   ╚══════════════════╝
+
+  * Spin mode
+  * Wave mode
+  * Pulse mode
+  * Flux mode
+  * Morph mode
+
+Ready for ASCII art!
