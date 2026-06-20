@@ -61,30 +61,30 @@ pip install -e .
 ### Basic Usage
 ```bash
 # Run with default settings (random file, wave mode, rainbow colors)
-python -m terminal_flow.curses_main
+terminal-flow
 
 # Display specific file with pulse animation and red gradient
-python -m terminal_flow.curses_main --file spin --mode pulse --color red
+terminal-flow --file spin --mode pulse --color red
 
 # Auto-cycle through files with spin mode and blue colors
-python -m terminal_flow.curses_main --cycle 15 --mode spin --color blue --hd
+terminal-flow --cycle 15 --mode spin --color blue --hd
 
 # Minimal CPU usage for 24/7 ambient display with flux mode
-python -m terminal_flow.curses_main --uld --cycle --mode flux --color orange
+terminal-flow --uld --cycle --mode flux --color orange
 ```
 
 ### Command Line Options
 ```bash
-python -m terminal_flow.curses_main --help                    # Show help
-python -m terminal_flow.curses_main --mode wave               # Animation mode: wave, spin, pulse, flux, morph
-python -m terminal_flow.curses_main --color red               # Color scheme: red, blue, green, yellow, purple, cyan, gray, pink, orange
-python -m terminal_flow.curses_main --speed 1.5               # Animation speed multiplier
-python -m terminal_flow.curses_main --file spin             # Display specific file (spin.txt)
-python -m terminal_flow.curses_main --cycle 30                # Auto-cycle files every 30 seconds
-python -m terminal_flow.curses_main --ld                      # Low definition (10 FPS, default)
-python -m terminal_flow.curses_main --md                      # Medium definition (30 FPS)
-python -m terminal_flow.curses_main --hd                      # High definition (60 FPS)
-python -m terminal_flow.curses_main --uld                     # Ultra-low definition (5 FPS)
+terminal-flow --help                    # Show help
+terminal-flow --mode wave               # Animation mode: wave, spin, pulse, flux, morph
+terminal-flow --color red               # Color scheme: red, blue, green, yellow, purple, cyan, gray, pink, orange
+terminal-flow --speed 1.5               # Animation speed multiplier
+terminal-flow --file spin             # Display specific file (spin.txt)
+terminal-flow --cycle 30                # Auto-cycle files every 30 seconds
+terminal-flow --ld                      # Low definition (10 FPS, default)
+terminal-flow --md                      # Medium definition (30 FPS)
+terminal-flow --hd                      # High definition (60 FPS)
+terminal-flow --uld                     # Ultra-low definition (5 FPS)
 ```
 
 ### Performance Options
@@ -136,49 +136,49 @@ Simply drop your `.txt` files into the `text/` directory and terminal-flow will 
 ### Animation Mode Combinations
 ```bash
 # Wave mode with blue gradient - horizontal flowing effect
-python -m terminal_flow.curses_main --mode wave --color blue
+terminal-flow --mode wave --color blue
 
 # Spin mode with orange gradient - spinning around center point
-python -m terminal_flow.curses_main --mode spin --color orange
+terminal-flow --mode spin --color orange
 
 # Pulse mode with purple gradient - ripple effects from center
-python -m terminal_flow.curses_main --mode pulse --color purple
+terminal-flow --mode pulse --color purple
 
 # Flux mode with pink gradient - uniform color cycling
-python -m terminal_flow.curses_main --mode flux --color pink
+terminal-flow --mode flux --color pink
 
 # Morph mode with green gradient - 3D wave field animation
-python -m terminal_flow.curses_main --mode morph --color green
+terminal-flow --mode morph --color green
 ```
 
 ### Performance & File Management
 ```bash
 # High-performance cycling display for presentations
-python -m terminal_flow.curses_main --hd --cycle 10 --mode spin
+terminal-flow --hd --cycle 10 --mode spin
 
 # Energy-efficient 24/7 display
-python -m terminal_flow.curses_main --uld --cycle 60 --mode flux --color cyan
+terminal-flow --uld --cycle 60 --mode flux --color cyan
 
 # Interactive file exploration (use arrow keys to navigate)
-python -m terminal_flow.curses_main --file spin --mode wave
+terminal-flow --file spin --mode wave
 
 # Fast animation with specific color scheme
-python -m terminal_flow.curses_main --speed 2.0 --mode pulse --color red --md
+terminal-flow --speed 2.0 --mode pulse --color red --md
 ```
 
 ### Creative Combinations
 ```bash
 # Slow, meditative orange flux for background ambiance
-python -m terminal_flow.curses_main --speed 0.5 --mode flux --color orange --ld
+terminal-flow --speed 0.5 --mode flux --color orange --ld
 
 # Rapid rainbow spin for dynamic displays
-python -m terminal_flow.curses_main --speed 1.5 --mode spin --hd
+terminal-flow --speed 1.5 --mode spin --hd
 
 # Gentle blue pulse effect for focus sessions
-python -m terminal_flow.curses_main --mode pulse --color blue --speed 0.8
+terminal-flow --mode pulse --color blue --speed 0.8
 
 # Cycling green wave for nature-themed displays
-python -m terminal_flow.curses_main --cycle 20 --mode wave --color green
+terminal-flow --cycle 20 --mode wave --color green
 ```
 
 
