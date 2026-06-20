@@ -5,6 +5,7 @@ Provides ripple pulse animation with distance-based coloring using the shared
 animation framework.
 """
 
+import curses
 import math
 from ..animation_base import BaseAnimationMode
 
@@ -26,8 +27,7 @@ class PulseMode(BaseAnimationMode):
     def initialize_mode_variables(self):
         """Initialize pulse-specific animation variables."""
         self.pulse_offset = 0.0
-        self.center_row = self.start_row + self.content_height // 2
-        self.center_col = self.start_col + self.content_width // 2
+        self._recompute_geometry()
 
     def update_animation_state(self, animation_speed, update_interval):
         """Update pulse animation offset."""
@@ -36,14 +36,18 @@ class PulseMode(BaseAnimationMode):
             self.pulse_offset -= 1.0
 
     def on_resize(self):
-        """Update center point when terminal is resized."""
-        self.center_row = self.start_row + self.content_height // 2
-        self.center_col = self.start_col + self.content_width // 2
+        """Update center + cached max distance when terminal is resized."""
+        self._recompute_geometry()
 
     def on_file_change(self):
-        """Update center point when file changes."""
+        """Update center + cached max distance when file changes."""
+        self._recompute_geometry()
+
+    def _recompute_geometry(self):
+        """Cache center point and max ripple distance (loop-invariant per frame)."""
         self.center_row = self.start_row + self.content_height // 2
         self.center_col = self.start_col + self.content_width // 2
+        self.max_distance = math.sqrt(self.content_width * self.content_width + self.content_height * self.content_height) / 2
 
     def draw_frame(self):
         """Draw pulse animation frame with distance-based ripples."""
@@ -71,8 +75,7 @@ class PulseMode(BaseAnimationMode):
                 distance = math.sqrt(dx * dx + dy * dy)
 
                 # Normalize distance to 0-1 range and subtract pulse offset for outward pulse
-                max_distance = math.sqrt(self.content_width * self.content_width + self.content_height * self.content_height) / 2
-                normalized_distance = distance / max_distance if max_distance > 0 else 0
+                normalized_distance = distance / self.max_distance if self.max_distance > 0 else 0
                 color_position = (normalized_distance - self.pulse_offset) % 1.0
 
                 # Get color from pre-computed palette (optimized)
@@ -80,7 +83,7 @@ class PulseMode(BaseAnimationMode):
 
                 try:
                     self.stdscr.addstr(row, col, char, attr)
-                except:  # curses.error
+                except curses.error:
                     pass  # Ignore screen boundary errors
 
 
