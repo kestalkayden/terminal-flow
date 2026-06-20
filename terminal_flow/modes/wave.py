@@ -5,6 +5,8 @@ Provides horizontal wave animation with gradient support using the shared
 animation framework.
 """
 
+import curses
+
 from ..animation_base import BaseAnimationMode
 
 
@@ -39,6 +41,10 @@ class WaveMode(BaseAnimationMode):
             if line_idx + self.start_row >= max_rows:
                 break
 
+            # Per-line invariants, hoisted out of the inner char loop (output-identical)
+            line_len = len(line)
+            line_phase = line_idx * 0.1
+
             for char_idx, char in enumerate(line):
                 # Skip whitespace characters entirely for performance
                 if not char.strip():
@@ -51,14 +57,14 @@ class WaveMode(BaseAnimationMode):
                     continue
 
                 # Calculate color position for this character (per-character calculation)
-                position = (char_idx / len(line) + self.animation_offset + line_idx * 0.1) % 1.0
+                position = (char_idx / line_len + self.animation_offset + line_phase) % 1.0
 
                 # Get color from pre-computed palette (optimized)
                 attr = self.get_color_from_palette(position)
 
                 try:
                     self.stdscr.addstr(row, col, char, attr)
-                except:  # curses.error
+                except curses.error:
                     pass  # Ignore screen boundary errors
 
 

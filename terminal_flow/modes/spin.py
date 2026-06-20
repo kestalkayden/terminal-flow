@@ -5,6 +5,7 @@ Provides polar coordinate rotation animation using the shared
 animation framework.
 """
 
+import curses
 import math
 from ..animation_base import BaseAnimationMode
 
@@ -80,7 +81,7 @@ class SpinMode(BaseAnimationMode):
 
                 try:
                     self.stdscr.addstr(row, col, char, attr)
-                except:  # curses.error
+                except curses.error:
                     pass  # Ignore screen boundary errors
 
 

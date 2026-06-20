@@ -10,6 +10,7 @@ import time
 from abc import ABC, abstractmethod
 from typing import Optional, Dict, Any, List, Tuple
 
+from .constants import ANIMATION_MODES
 from .text import TextLoader
 from .colors.curses_adapter import get_default_adapter, get_default_sequence
 
@@ -36,8 +37,8 @@ class BaseAnimationMode(ABC):
         """
         self.mode_name = mode_name
 
-        # Animation modes list
-        self.modes = ['wave', 'spin', 'pulse', 'flux', 'morph']
+        # Animation modes list (single source of truth in constants.py)
+        self.modes = list(ANIMATION_MODES)
 
         # Color schemes list
         self.color_schemes = [None, 'red', 'blue', 'green', 'yellow', 'purple', 'cyan', 'gray', 'pink', 'orange']

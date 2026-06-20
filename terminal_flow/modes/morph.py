@@ -6,6 +6,8 @@ animation framework. Colors exhibit organic movement through complex mathematica
 wave interference patterns.
 """
 
+import curses
+import math
 import time
 from ..animation_base import BaseAnimationMode
 from ..colors.generator import ColorGenerator
@@ -45,7 +47,6 @@ class WaveField:
         for r in range(rows):
             row_distances = []
             for c in range(cols):
-                import math
                 distance = math.sqrt((r - self.center_row) ** 2 + (c - self.center_col) ** 2)
                 row_distances.append(distance)
             self.distance_grid.append(row_distances)
@@ -78,8 +79,6 @@ class WaveField:
             time_offset: Time offset for wave calculations
             content_bounds: (start_row, end_row, line_lengths) for spatial optimization
         """
-        import math
-
         # Spatial optimization: only calculate for content area if bounds provided
         if content_bounds:
             start_row, end_row, line_lengths = content_bounds
@@ -239,19 +238,19 @@ class MorphMode(BaseAnimationMode):
 
                         try:
                             self.stdscr.addstr(row, col, char, attr)
-                        except:  # curses.error
+                        except curses.error:
                             pass  # Ignore screen boundary errors
                     else:
                         # Fallback for invalid tier
                         try:
                             self.stdscr.addstr(row, col, char)
-                        except:  # curses.error
+                        except curses.error:
                             pass
                 else:
                     # Fallback if wave field not available
                     try:
                         self.stdscr.addstr(row, col, char)
-                    except:  # curses.error
+                    except curses.error:
                         pass
 
 
