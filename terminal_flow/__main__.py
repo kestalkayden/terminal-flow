@@ -1,6 +1,9 @@
-"""Main entry point for python -m terminal_flow."""
+"""Entry point for `python -m terminal_flow` — runs the curses animator.
 
-from .main import cli
+Mirrors the `terminal-flow` console script so both front doors behave identically.
+"""
+
+from .curses_main import main
 
 if __name__ == "__main__":
-    cli()
+    main()
