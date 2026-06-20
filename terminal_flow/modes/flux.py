@@ -56,7 +56,7 @@ class FluxMode(BaseAnimationMode):
 
                 try:
                     self.stdscr.addstr(row, col, char, uniform_attr)
-                except:  # curses.error
+                except curses.error:
                     pass  # Ignore screen boundary errors
 
 

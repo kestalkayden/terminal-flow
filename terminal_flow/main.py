@@ -35,6 +35,7 @@ from rich import print as rprint
 import sys
 from pathlib import Path
 
+from .constants import ANIMATION_MODES
 from .text import TextLoader
 
 console = Console()
@@ -43,7 +44,7 @@ console = Console()
 @click.command()
 @click.option(
     "--mode",
-    type=click.Choice(["wave", "spin", "pulse", "flux", "morph"]),
+    type=click.Choice(list(ANIMATION_MODES)),
     default="wave",
     help="Display mode for color animation"
 )
